@@ -9,33 +9,33 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transactions
+namespace INFC20P1.Pages.Transs
 {
     public class EditModel : PageModel
     {
-        private readonly INFC20P1.Data.INFC20P1TransactionContext _context;
+        private readonly INFC20P1.Data.INFC20P1TransContext _context;
 
-        public EditModel(INFC20P1.Data.INFC20P1TransactionContext context)
+        public EditModel(INFC20P1.Data.INFC20P1TransContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Transaction Transaction { get; set; } = default!;
+        public Trans Trans { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Transaction == null)
+            if (id == null || _context.Trans == null)
             {
                 return NotFound();
             }
 
-            var transaction =  await _context.Transaction.FirstOrDefaultAsync(m => m.tid == id);
-            if (transaction == null)
+            var Trans =  await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
+            if (Trans == null)
             {
                 return NotFound();
             }
-            Transaction = transaction;
+            Trans = Trans;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace INFC20P1.Pages.Transactions
                 return Page();
             }
 
-            _context.Attach(Transaction).State = EntityState.Modified;
+            _context.Attach(Trans).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace INFC20P1.Pages.Transactions
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TransactionExists(Transaction.tid))
+                if (!TransExists(Trans.tid))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace INFC20P1.Pages.Transactions
             return RedirectToPage("./Index");
         }
 
-        private bool TransactionExists(int id)
+        private bool TransExists(int id)
         {
-          return _context.Transaction.Any(e => e.tid == id);
+          return _context.Trans.Any(e => e.tid == id);
         }
     }
 }

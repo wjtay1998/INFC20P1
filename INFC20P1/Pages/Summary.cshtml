@@ -1,0 +1,81 @@
+﻿@page "/Summary/{pname?}"
+@model INFC20P1.Pages.SummaryModel
+@{
+}
+
+
+<div class="px-4">
+    <div class="text-center">
+        <h1 class="display-4">PayTrack</h1>
+        <p>Summary of @Model.username Transs</p>
+    </div>
+
+    <div class="row mx-5">
+        <div class="col-4">
+            <div class="text-center">
+                <h3>Total Incoming</h3>
+                <p>@Model.total_incoming</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="text-center">
+                <h3>Total Outgoing</h3>
+                <p>@Model.total_outgoing</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="text-center">
+                <h3>Balance</h3>
+                <p>@Model.balance</p>
+            </div>
+        </div>
+    </div>"
+    
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.trans[0].tname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.trans[0].send_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.trans[0].recieve_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.trans[0].t_date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.trans)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.send_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recieve_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.t_date)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.tid">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.tid">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.tid">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

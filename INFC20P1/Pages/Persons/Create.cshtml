@@ -19,6 +19,16 @@
                 <span asp-validation-for="Person.pname" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Person.sent" class="control-label"></label>
+                <input asp-for="Person.sent" class="form-control" />
+                <span asp-validation-for="Person.sent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Person.recieved" class="control-label"></label>
+                <input asp-for="Person.recieved" class="form-control" />
+                <span asp-validation-for="Person.recieved" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

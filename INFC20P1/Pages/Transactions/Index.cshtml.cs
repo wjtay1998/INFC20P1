@@ -8,24 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transactions
+namespace INFC20P1.Pages.Transs
 {
     public class IndexModel : PageModel
     {
-        private readonly INFC20P1.Data.INFC20P1TransactionContext _context;
+        private readonly INFC20P1.Data.INFC20P1TransContext _context;
 
-        public IndexModel(INFC20P1.Data.INFC20P1TransactionContext context)
+        public IndexModel(INFC20P1.Data.INFC20P1TransContext context)
         {
             _context = context;
         }
 
-        public IList<Transaction> Transaction { get;set; } = default!;
+        public IList<Trans> Trans { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Transaction != null)
+            if (_context.Trans != null)
             {
-                Transaction = await _context.Transaction.ToListAsync();
+                Trans = await _context.Trans.ToListAsync();
             }
         }
     }

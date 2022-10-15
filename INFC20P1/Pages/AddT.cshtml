@@ -1,0 +1,55 @@
+﻿@page
+@model INFC20P1.Pages.AddTModel
+@{
+}
+
+<div class="px-4">
+    <div class="text-center">
+        <h1 class="display-4">PayTrack</h1>
+        <p>Record your new Transactions!</p>
+    </div>
+</div>
+
+<div class="px-4 py-2">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Trans.tname" class="control-label"></label>
+                    <input asp-for="Trans.tname" class="form-control" />
+                    <span asp-validation-for="Trans.tname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trans.send_pname" class="control-label"></label>
+                    <input asp-for="Trans.send_pname" class="form-control" />
+                    <span asp-validation-for="Trans.send_pname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trans.recieve_pname" class="control-label"></label>
+                    <input asp-for="Trans.recieve_pname" class="form-control" />
+                    <span asp-validation-for="Trans.recieve_pname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trans.amount" class="control-label"></label>
+                    <input asp-for="Trans.amount" class="form-control" />
+                    <span asp-validation-for="Trans.amount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trans.t_date" class="control-label"></label>
+                    <input asp-for="Trans.t_date" class="form-control" />
+                    <span asp-validation-for="Trans.t_date" class="text-danger"></span>
+                </div>
+                <div class="form-group py-2">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql.local",
-      "connectionId": "ConnectionStrings:INFC20P1TransactionContext"
+      "connectionId": "ConnectionStrings:INFC20P1TransContext"
     },
     "mssql2": {
       "type": "mssql.local",

@@ -8,6 +8,8 @@ namespace INFC20P1.Models
         public int pid { get; set; }
         public string pname { get; set; } = string.Empty;
 
-        public double balance;
+        public decimal sent { get; set; }
+
+        public decimal recieved { get; set; }
     }
 }

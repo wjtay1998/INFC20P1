@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<INFC20P1PersonContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("INFC20P1PersonContext") ?? throw new InvalidOperationException("Connection string 'INFC20P1PersonContext' not found.")));
-builder.Services.AddDbContext<INFC20P1TransactionContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("INFC20P1TransactionContext") ?? throw new InvalidOperationException("Connection string 'INFC20P1TransactionContext' not found.")));
+builder.Services.AddDbContext<INFC20P1TransContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("INFC20P1TransContext") ?? throw new InvalidOperationException("Connection string 'INFC20P1TransContext' not found.")));
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,14 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using INFC20P1.Data;
 using INFC20P1.Models;
+using INFC20P1.Models.Forms;
 
-namespace INFC20P1.Pages.Transs
+namespace INFC20P1.Pages
 {
-    public class CreateModel : PageModel
+    public class AddTModel : PageModel
     {
         private readonly INFC20P1.Data.INFC20P1TransContext _context;
 
-        public CreateModel(INFC20P1.Data.INFC20P1TransContext context)
+        public string successMessage;
+
+        public AddTModel(INFC20P1.Data.INFC20P1TransContext context)
         {
             _context = context;
         }
@@ -25,21 +28,22 @@ namespace INFC20P1.Pages.Transs
         }
 
         [BindProperty]
-        public Trans Trans { get; set; }
-        
+        public TransInput Trans { get; set; }
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Trans.Add(Trans);
-            await _context.SaveChangesAsync();
+            // call stored procedure to insert
 
-            return RedirectToPage("./Index");
+            successMessage = "Successfully saved Trans of $" + Trans.amount;
+
+            return Page();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace INFC20P1.Models
 {
-    public class Transaction
+    public class Trans
     {
         [Key]
         public int tid { get; set; }
@@ -10,6 +10,8 @@ namespace INFC20P1.Models
 
         public int send_id { get; set; }
         public int recieve_id { get; set; }
+
+        public decimal amount { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime t_date { get; set; }

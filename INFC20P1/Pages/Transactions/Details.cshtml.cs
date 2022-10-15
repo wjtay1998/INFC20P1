@@ -8,34 +8,34 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transactions
+namespace INFC20P1.Pages.Transs
 {
     public class DetailsModel : PageModel
     {
-        private readonly INFC20P1.Data.INFC20P1TransactionContext _context;
+        private readonly INFC20P1.Data.INFC20P1TransContext _context;
 
-        public DetailsModel(INFC20P1.Data.INFC20P1TransactionContext context)
+        public DetailsModel(INFC20P1.Data.INFC20P1TransContext context)
         {
             _context = context;
         }
 
-      public Transaction Transaction { get; set; }
+      public Trans Trans { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Transaction == null)
+            if (id == null || _context.Trans == null)
             {
                 return NotFound();
             }
 
-            var transaction = await _context.Transaction.FirstOrDefaultAsync(m => m.tid == id);
-            if (transaction == null)
+            var Trans = await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
+            if (Trans == null)
             {
                 return NotFound();
             }
             else 
             {
-                Transaction = transaction;
+                Trans = Trans;
             }
             return Page();
         }

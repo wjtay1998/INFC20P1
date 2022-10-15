@@ -16,6 +16,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Person[0].pname)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].sent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person[0].recieved)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +30,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.pname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recieved)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.pid">Edit</a> |

@@ -8,52 +8,52 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transactions
+namespace INFC20P1.Pages.Transs
 {
     public class DeleteModel : PageModel
     {
-        private readonly INFC20P1.Data.INFC20P1TransactionContext _context;
+        private readonly INFC20P1.Data.INFC20P1TransContext _context;
 
-        public DeleteModel(INFC20P1.Data.INFC20P1TransactionContext context)
+        public DeleteModel(INFC20P1.Data.INFC20P1TransContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-      public Transaction Transaction { get; set; }
+      public Trans Trans { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Transaction == null)
+            if (id == null || _context.Trans == null)
             {
                 return NotFound();
             }
 
-            var transaction = await _context.Transaction.FirstOrDefaultAsync(m => m.tid == id);
+            var Trans = await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
 
-            if (transaction == null)
+            if (Trans == null)
             {
                 return NotFound();
             }
             else 
             {
-                Transaction = transaction;
+                Trans = Trans;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Transaction == null)
+            if (id == null || _context.Trans == null)
             {
                 return NotFound();
             }
-            var transaction = await _context.Transaction.FindAsync(id);
+            var Trans = await _context.Trans.FindAsync(id);
 
-            if (transaction != null)
+            if (Trans != null)
             {
-                Transaction = transaction;
-                _context.Transaction.Remove(Transaction);
+                Trans = Trans;
+                _context.Trans.Remove(Trans);
                 await _context.SaveChangesAsync();
             }
 

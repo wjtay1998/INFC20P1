@@ -4,7 +4,7 @@
 
 namespace INFC20P1.Migrations.INFC20P1Person
 {
-    public partial class PersonCreate : Migration
+    public partial class addPerson : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,8 @@ namespace INFC20P1.Migrations.INFC20P1Person
                 {
                     pid = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    pname = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    pname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
