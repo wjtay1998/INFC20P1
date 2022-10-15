@@ -1,0 +1,50 @@
+﻿@page
+@model INFC20P1.Pages.Transactions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Transaction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Transaction.tid" />
+            <div class="form-group">
+                <label asp-for="Transaction.tname" class="control-label"></label>
+                <input asp-for="Transaction.tname" class="form-control" />
+                <span asp-validation-for="Transaction.tname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transaction.send_id" class="control-label"></label>
+                <input asp-for="Transaction.send_id" class="form-control" />
+                <span asp-validation-for="Transaction.send_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transaction.recieve_id" class="control-label"></label>
+                <input asp-for="Transaction.recieve_id" class="form-control" />
+                <span asp-validation-for="Transaction.recieve_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transaction.t_date" class="control-label"></label>
+                <input asp-for="Transaction.t_date" class="form-control" />
+                <span asp-validation-for="Transaction.t_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

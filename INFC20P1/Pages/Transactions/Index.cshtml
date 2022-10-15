@@ -1,0 +1,54 @@
+﻿@page
+@model INFC20P1.Pages.Transactions.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Transaction[0].tname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Transaction[0].send_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Transaction[0].recieve_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Transaction[0].t_date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Transaction) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.send_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recieve_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.t_date)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.tid">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.tid">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.tid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
