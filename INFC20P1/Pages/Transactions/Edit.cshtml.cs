@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transs
+namespace INFC20P1.Pages.Transactions
 {
     public class EditModel : PageModel
     {
@@ -30,12 +30,12 @@ namespace INFC20P1.Pages.Transs
                 return NotFound();
             }
 
-            var Trans =  await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
-            if (Trans == null)
+            var trans =  await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
+            if (trans == null)
             {
                 return NotFound();
             }
-            Trans = Trans;
+            Trans = trans;
             return Page();
         }
 

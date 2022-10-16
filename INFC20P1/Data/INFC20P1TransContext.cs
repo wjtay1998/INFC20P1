@@ -15,5 +15,6 @@ namespace INFC20P1.Data
         }
 
         public DbSet<INFC20P1.Models.Trans> Trans { get; set; } = default!;
+        public DbSet<INFC20P1.Models.Forms.TransInput> TransInput { get; set; } = default!;
     }
 }

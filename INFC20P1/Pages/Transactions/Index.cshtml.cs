@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transs
+namespace INFC20P1.Pages.Transactions
 {
     public class IndexModel : PageModel
     {

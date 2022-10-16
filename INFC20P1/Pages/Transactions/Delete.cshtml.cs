@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using INFC20P1.Data;
 using INFC20P1.Models;
 
-namespace INFC20P1.Pages.Transs
+namespace INFC20P1.Pages.Transactions
 {
     public class DeleteModel : PageModel
     {
@@ -29,15 +29,15 @@ namespace INFC20P1.Pages.Transs
                 return NotFound();
             }
 
-            var Trans = await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
+            var trans = await _context.Trans.FirstOrDefaultAsync(m => m.tid == id);
 
-            if (Trans == null)
+            if (trans == null)
             {
                 return NotFound();
             }
             else 
             {
-                Trans = Trans;
+                Trans = trans;
             }
             return Page();
         }
@@ -48,11 +48,11 @@ namespace INFC20P1.Pages.Transs
             {
                 return NotFound();
             }
-            var Trans = await _context.Trans.FindAsync(id);
+            var trans = await _context.Trans.FindAsync(id);
 
-            if (Trans != null)
+            if (trans != null)
             {
-                Trans = Trans;
+                Trans = trans;
                 _context.Trans.Remove(Trans);
                 await _context.SaveChangesAsync();
             }

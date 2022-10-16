@@ -7,19 +7,41 @@
 <div class="px-4">
     <div class="text-center">
         <h1 class="display-4">PayTrack</h1>
-        <p>Summary of @Model.username Transs</p>
+        <p>Summary of <b>@Model.username</b>'s transactions!</p>
+    </div>
+
+    <div class="row mx-5">
+        @if (Model.successMessage != null)
+        {
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill" /></svg>
+                <div>
+                    @Model.successMessage
+                </div>
+            </div>
+        }
+
+        @if (Model.errorMessage != null)
+        {
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill" /></svg>
+                <div>
+                    @Model.errorMessage
+                </div>
+            </div>
+        }
     </div>
 
     <div class="row mx-5">
         <div class="col-4">
             <div class="text-center">
-                <h3>Total Incoming</h3>
+                <h3>Total Recieved</h3>
                 <p>@Model.total_incoming</p>
             </div>
         </div>
         <div class="col-4">
             <div class="text-center">
-                <h3>Total Outgoing</h3>
+                <h3>Total Sent</h3>
                 <p>@Model.total_outgoing</p>
             </div>
         </div>
@@ -33,49 +55,140 @@
     
 </div>
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.trans[0].tname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.trans[0].send_id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.trans[0].recieve_id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.trans[0].t_date)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.trans)
-            {
+
+<div class="row px-2 py-2">
+    <div>
+        <h2>Incoming Transactions</h2>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tname)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.send_id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.recieve_id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.t_date)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.tid">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.tid">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.tid">Delete</a>
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieve_trans[0].tname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieve_trans[0].send_pname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieve_trans[0].recieve_pname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieve_trans[0].t_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieve_trans[0].amount)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.recieve_trans)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.send_pname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recieve_pname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.t_date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.amount)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-page="./EditT" asp-route-id="@item.tid" asp-route-action="Edit" style="margin-right:15px">
+
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </a>
+                            |
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.tid"
+                              onclick="return confirm('Are you sure you want to remove this' + '@item.tname' + 'transaction ?')">
+
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="row px-2 py-2">
+    <div>
+        <h2>Outgoing Transactions</h2>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.send_trans[0].tname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.send_trans[0].send_pname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.send_trans[0].recieve_pname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.send_trans[0].t_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.send_trans[0].amount)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.send_trans)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.send_pname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recieve_pname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.t_date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.amount)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-page="./EditT" asp-route-id="@item.tid" asp-route-action="Edit" style="margin-right:15px">
+
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </a>
+                            |
+                            <form asp-page-handler="Delete" method="post" asp-route-id="@item.tid"
+                              onclick="return confirm('Are you sure you want to remove this' + '@item.tname' + 'transaction ?')">
+
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
